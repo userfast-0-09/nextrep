@@ -246,6 +246,16 @@ Object.assign(en, {
   'Näin ansaitset':'How to earn rewards',
   'Palkinto päivän ensimmäisestä suorituksesta kussakin kategoriassa.':'A reward for the first completed activity in each category every day.',
   'Treeni':'Workout', 'Heittoarvio':'Shot review', 'Taitoharjoitus':'Skill drill',
+  'Räjähtävyys':'Explosiveness', 'Keskivartalo':'Core', 'Jalat':'Legs', 'Kädet':'Arms',
+  'Korinalusheitot':'Finishing', 'Terävä ponnistus':'Explosive takeoff',
+  'treeni':'workout', 'treeniä':'workouts', 'NOIN':'ABOUT', 'HARJOITETTA':'EXERCISES',
+  'Tavoite:':'Goal:', 'VOIMA':'STRENGTH', 'RÄJÄHTÄVYYS':'EXPLOSIVENESS',
+  'LIIKKUVUUS':'MOBILITY', 'KESKIVARTALO':'CORE', 'JALAT':'LEGS', 'KÄDET':'ARMS',
+  'KORINALUSHEITOT':'FINISHING', 'Yksi toisto kerrallaan.':'One rep at a time.',
+  'POSE AI + 2D-MITTAUS':'POSE AI + 2D MEASUREMENT',
+  'Video ja videoruudut pysyvät laitteellasi. MediaPipe käsittelee kuvan paikallisesti; palvelu voi lähettää Googlelle teknisiä käyttö- ja suorituskykymittareita. Päiväkirjaan tallennetaan vain analyysin tulokset, mittaukset ja omat muistiinpanosi.':'The video and its frames stay on your device. MediaPipe processes images locally; the service may send Google technical usage and performance metrics. Only results, measurements and your notes are saved in the journal.',
+  'Voit tarkistaa AI:n havaintoa omalla kolmen pisteen 2D-mittauksella.':'You can check the AI observation with your own three-point 2D measurement.',
+  'H':'C', 'R':'F', 'g × 4 + H':'g × 4 + C', 'g × 4 + R':'g × 4 + F',
 });
 
 const presetNames: Record<string, string> = {
@@ -284,6 +294,7 @@ const patterns: [RegExp, (...groups: string[]) => string][] = [
   [/^Oma tavoite: (\d+) treeniä \/ 7 päivää$/, n => `Your goal: ${n} workouts / 7 days`],
   [/^(\d+) kolikkoa\. Avaa palkinnot\.$/, n => `${n} coins. View rewards.`],
   [/^(\d+) sarjaa jäljellä$/, n => `${n} sets remaining`],
+  [/^(.+), grammaa$/, name => `${en[name] || name}, grams`],
   [/^En tunnistanut: (.+)\. Lisää näiden arvot käsin ennen tallennusta tai kokoa annos Annos-välilehdellä\.$/, foods => `Not recognized: ${foods}. Enter their values manually or build the meal from ingredients.`],
 ];
 
@@ -327,10 +338,11 @@ export function watchLanguage(root: HTMLElement, language: AppLanguage) {
       attrs.set(element, records);
     });
   }
-  let frame = 0;
-  const observer = new MutationObserver(() => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; visit(); }); });
+  // Mutation observers run before the next paint, keeping route changes in the
+  // selected language without a frame of Finnish copy.
+  const observer = new MutationObserver(visit);
   visit();
   observer.observe(root, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: names });
-  return () => { observer.disconnect(); cancelAnimationFrame(frame); language = 'fi'; visit(); };
+  return () => { observer.disconnect(); language = 'fi'; visit(); };
 }
 

@@ -543,6 +543,7 @@ dialog::backdrop { background:#10241975; backdrop-filter:blur(4px); }
 [data-theme="dark"] .food-ai-uncertain { background:#443421; color:#ffd69b; }
 [data-theme="dark"] .week-dots .done span,[data-theme="dark"] .challenge-choice.chosen,[data-theme="dark"] .set-row.is-done input { background:#294833; color:#d5f9b4; }
 [data-theme="dark"] .hero,[data-theme="dark"] .live-art,[data-theme="dark"] .reward-hero { background:#103523; }
+[data-theme="dark"] .level-card p,[data-theme="dark"] .level-card div>span:last-child,[data-theme="dark"] .calculated-target>p,[data-theme="dark"] .food-ai-result-head h3 { color:#b9cbb7; }
 @media(max-width:700px) { .preferences-trigger { padding:8px; min-width:43px; justify-content:center; } .preferences-trigger span { display:none; } }
 
 @media(max-width:1100px) {
