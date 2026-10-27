@@ -1,6 +1,6 @@
 # FastRep · beta 0.3
 
-A Finnish, mobile-first training app for basketball players. React + TypeScript, Vinext, Cloudflare Workers and D1. The jumpshot tool uses MediaPipe Pose Landmarker in the browser, with no paid AI calls or advertising SDKs in this version.
+A mobile-first training app for basketball players with Finnish and English interface options. React + TypeScript, Vinext, Cloudflare Workers and D1. The jumpshot tool uses MediaPipe Pose Landmarker in the browser, with no paid AI calls or advertising SDKs in this version.
 
 ## GitHub Pages – avaa FastRep selaimessa
 
@@ -8,7 +8,7 @@ Julkaistu sovellus: **https://userfast-0-09.github.io/nextrep/**
 
 GitHub Pages on käytössä. Julkaisulähde on **gh-pages-haaran juuri (/)**. Haara sisältää valmiin `docs/`-kansion tiedostot juuressaan. Main-haarassa säilyvät lähdekoodi ja valmis docs-versio. Erillistä käyttöönottoa ei tarvita.
 
-Tämä versio avautuu ilman tiliä tai ChatGPT-kirjautumista. Treenit, ateriat, makrotavoitteen laskuri, heittohaasteet, taitoharjoitteet, ohjattu jumpshot-videoanalyysi, palkinnot ja profiili toimivat selaimessa. Makrot ja Heitto-AI löytyvät omina sivuinaan myös mobiilin alavalikosta. Makrosivulla voi asettaa tavoitteen, avata kuva-AI:n ja nähdä päivän etenemän. Valmiit kirjaukset tallentuvat paikallisesti selaimeen. **Oma profiili → Lataa varmuuskopio** tallentaa JSON-tiedoston, jonka voi palauttaa toisella laitteella. Selaintietojen tyhjentäminen poistaa paikalliset kirjaukset. Videot eivät tallennu päiväkirjaan eivätkä varmuuskopioon.
+Tämä versio avautuu ilman tiliä tai ChatGPT-kirjautumista. Treenit, ateriat, makrotavoitteen laskuri, heittohaasteet, taitoharjoitteet, ohjattu jumpshot-videoanalyysi, palkinnot ja profiili toimivat selaimessa. Makrot ja Heitto-AI löytyvät omina sivuinaan myös mobiilin alavalikosta. Makrosivulla voi asettaa tavoitteen, avata ateria-arvion ja nähdä päivän etenemän. Ruoka-arviossa voi antaa kuvan lisäksi kuvauksen ja grammoina annetut määrät; tekstintunnistus käyttää rajattua ruokalistaa eikä arvaa painoa. Yläpalkin asetuksista voi vaihtaa vaalean ja tumman teeman sekä suomen ja englannin välillä. Asetukset tallentuvat selaimeen. Valmiit kirjaukset tallentuvat paikallisesti selaimeen. **Oma profiili → Lataa varmuuskopio** tallentaa JSON-tiedoston, jonka voi palauttaa toisella laitteella. Selaintietojen tyhjentäminen poistaa paikalliset kirjaukset. Videot eivät tallennu päiväkirjaan eivätkä varmuuskopioon.
 
 Pages-versiossa ei ole yhteistä palvelinta: kirjautuminen, automaattinen laitteiden välinen synkronointi ja live-kisahuoneet eivät ole käytössä. Vanhan palvelinversion tietoja ei siirretä automaattisesti. Kolikot ja XP ovat paikallisia, eikä niitä voi käyttää varmennettuun julkiseen kilpailuun.
 
