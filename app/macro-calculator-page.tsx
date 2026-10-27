@@ -18,7 +18,7 @@ export function MacroCalculatorPage({ entries, profile, day, busy, addPhoto, ope
   ] as const : [];
 
   return <>
-    <div className="section-heading"><div><span className="eyebrow">MAKROT</span><h1>Laske ja seuraa makroja.</h1><p>Aseta päivän tavoite, arvioi ateria kuvasta ja katso paljonko on jäljellä.</p></div></div>
+    <div className="section-heading"><div><span className="eyebrow">MAKROT</span><h1>Laske ja seuraa makroja.</h1><p>Aseta päivän tavoite, arvioi ateria kuvasta tai tekstistä ja katso paljonko on jäljellä.</p></div></div>
     <div className="macro-page-grid">
       <section className="card macro-page-calculator"><div className="card-heading"><div><span className="eyebrow">OMA TAVOITE</span><h2>Makrolaskuri</h2></div><span className="square-icon mint"><Calculator size={21}/></span></div><MacroTargetForm current={target} busy={busy} save={saveTargets}/></section>
       <div className="stack">

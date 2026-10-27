@@ -30,6 +30,7 @@ assert.equal(language.translateUi('Makrolaskuri'), 'Macro calculator');
 assert.equal(language.translateUi(' 50 g riisiä '), ' 50 g riisiä '); // Unmapped text remains untouched.
 assert.equal(language.translateUi('Kana, kypsä'), 'Cooked chicken');
 assert.match(language.translateUi('Heittokäden ojennus jää pieneksi (12°). Ojenna kyynärpää ja jätä ranne rennosti alas kohti koria.'), /Shooting arm extension is limited.*Extend your elbow/);
+assert.match(language.translateUi('Katso video-ohje: Katso: goblet-kyykky. Jack Hanrahan. YouTube, avautuu uuteen välilehteen.'), /^Watch tutorial:/);
 for (const program of model.programs) for (const [name] of program.exercises) {
   const guide = guides.exerciseGuides[name];
   assert.notEqual(language.translateUi(guide.instruction), guide.instruction, `Missing English cue for ${name}`);
