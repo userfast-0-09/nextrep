@@ -8,7 +8,7 @@ Julkaistu sovellus: **https://userfast-0-09.github.io/nextrep/**
 
 GitHub Pages on käytössä. Julkaisulähde on **gh-pages-haaran juuri (/)**. Haara sisältää valmiin `docs/`-kansion tiedostot juuressaan. Main-haarassa säilyvät lähdekoodi ja valmis docs-versio. Erillistä käyttöönottoa ei tarvita.
 
-Tämä versio avautuu ilman tiliä tai ChatGPT-kirjautumista. Treenit, ateriat, makrotavoitteen laskuri, heittohaasteet, taitoharjoitteet, ohjattu jumpshot-videoanalyysi, palkinnot ja profiili toimivat selaimessa. Valmiit kirjaukset tallentuvat paikallisesti selaimeen. **Oma profiili → Lataa varmuuskopio** tallentaa JSON-tiedoston, jonka voi palauttaa toisella laitteella. Selaintietojen tyhjentäminen poistaa paikalliset kirjaukset. Videot eivät tallennu päiväkirjaan eivätkä varmuuskopioon.
+Tämä versio avautuu ilman tiliä tai ChatGPT-kirjautumista. Treenit, ateriat, makrotavoitteen laskuri, heittohaasteet, taitoharjoitteet, ohjattu jumpshot-videoanalyysi, palkinnot ja profiili toimivat selaimessa. Makrot ja Heitto-AI löytyvät omina sivuinaan myös mobiilin alavalikosta. Makrosivulla voi asettaa tavoitteen, avata kuva-AI:n ja nähdä päivän etenemän. Valmiit kirjaukset tallentuvat paikallisesti selaimeen. **Oma profiili → Lataa varmuuskopio** tallentaa JSON-tiedoston, jonka voi palauttaa toisella laitteella. Selaintietojen tyhjentäminen poistaa paikalliset kirjaukset. Videot eivät tallennu päiväkirjaan eivätkä varmuuskopioon.
 
 Pages-versiossa ei ole yhteistä palvelinta: kirjautuminen, automaattinen laitteiden välinen synkronointi ja live-kisahuoneet eivät ole käytössä. Vanhan palvelinversion tietoja ei siirretä automaattisesti. Kolikot ja XP ovat paikallisia, eikä niitä voi käyttää varmennettuun julkiseen kilpailuun.
 
@@ -34,7 +34,7 @@ Tarkistukset: `pnpm test:pages`, `node tests/core.test.cjs` ja `node node_module
 - Three manually scored solo shooting challenges and personal records.
 - Invite-code two-player rooms with server-timed countdown and 60-second competition, polled scores and player authorization.
 - XP, daily activity rewards, achievements and a cosmetic shop with server-side balance checks.
-- Responsive FastRep dashboard, five-section navigation, workout filters, activity history/details, weekly progress and web-app manifest.
+- Responsive FastRep dashboard, dedicated Makrot and Heitto-AI sections, workout filters, activity history/details, weekly progress and web-app manifest.
 
 ## Not implemented yet
 - Automatic made/missed shot detection and video-based result verification. Pose-AI technique feedback is implemented, but it does not detect the ball or basket and estimates release from wrist rise and elbow extension.
@@ -60,14 +60,14 @@ Use Node 22.13+ and the supplied lockfile. Install dependencies with `pnpm insta
 D1 schema lives in `db/schema.ts`; generated migrations are in `drizzle/`. Bind `DB` in `.openai/hosting.json`. The publication workflow applies migrations. Local preview migrations are separate.
 
 ## GitHub
-Public source mirror: https://github.com/userfast-0-09/nextrep. The repository URL and `/api/nextrep` compatibility endpoint are retained after the FastRep rename. The default server build retains its D1 database and authentication. The separate `build:pages` target creates the browser-local GitHub Pages version described above. Never commit runtime credentials or `.env` files.
+Public source mirror: https://github.com/userfast-0-09/nextrep. The `/api/nextrep` compatibility endpoint is retained after the FastRep rename. The default server build retains its D1 database and authentication. The separate `build:pages` target creates the browser-local GitHub Pages version described above. Never commit runtime credentials or `.env` files.
 
 ## Validation
 TypeScript compilation, production build and API/core checks are run before deployment. The API checks execute the actual route handlers against an isolated in-memory SQLite adapter. Browser and device testing has not been performed in this environment; camera permissions/codec support, accessibility and two-phone live play still need real-device verification.
 
 ## Solo training library
 
-The training library has 11 areas: strength, explosiveness, mobility, core, legs, arms, finishing, midrange, three-point shooting, passing and defending. Program equipment, solo setup and prescriptions live in `app/model.ts`. Video links, chapter offsets, coaching cues, tracking modes and rest periods live in `app/video-guides.ts`. Links open YouTube only when selected; no embedded players or third-party thumbnails load in the app.
+The training library has 11 areas: strength, explosiveness, mobility, core, legs, arms, finishing, midrange, three-point shooting, passing and defending. Program equipment, solo setup and prescriptions live in `app/model.ts`. Direct YouTube links, chapter offsets, coaching cues, tracking modes and rest periods live in `app/video-guides.ts`. The active workouts use adult male coaches and basketball-specific warm-up/jump examples where suitable; historical workouts retain their links. Links open YouTube only when selected; no embedded players or third-party thumbnails load in the app. Video availability may change independently of the app.
 
 The original three program definitions remain in `legacyPrograms` so existing histories and backups still validate. Do not change historical prescriptions in place. The active library uses separate program IDs.
 

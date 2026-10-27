@@ -57,8 +57,14 @@ for (const program of model.programs) {
     assert.equal(html.includes('paino kilogrammoina'), guide.tracking === 'strength');
   }
 }
+for (const program of model.legacyPrograms.filter(p => p.id !== 'reset')) for (const [name] of program.exercises) {
+  assert.ok(guides.exerciseGuides[name]?.instruction, `Missing historical gym/court guide: ${name}`);
+}
 for (const key of model.skills.map(s => s.id)) assert.ok(guides.skillGuides[key]);
 for (const key of model.challenges.map(c => c.id)) assert.ok(guides.challengeGuides[key]);
+for (const guide of [...Object.values(guides.exerciseGuides), ...Object.values(guides.skillGuides), ...Object.values(guides.challengeGuides)]) {
+  assert.ok(/^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}(?:&t=\d+s)?$/.test(guide.url), `Use a direct YouTube lesson: ${guide.url}`);
+}
 for (const filter of ['all', ...expectedAreas]) {
   const html = renderToStaticMarkup(React.createElement(library.TrainingLibrary, { programs: model.programs, entries: [], filter, selectFilter() {}, goal: 'Voima', openProfile() {}, preview() {}, openSkills() {} }));
   assert.equal((html.match(/class="card training-card /g) || []).length, filter === 'all' ? 11 : 1);
