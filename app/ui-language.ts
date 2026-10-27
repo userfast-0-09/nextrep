@@ -1,4 +1,5 @@
 import { foodProfiles } from './food-ai';
+import { exerciseGuides, skillGuides } from './video-guides';
 
 export type AppLanguage = 'fi' | 'en';
 export type AppTheme = 'light' | 'dark';
@@ -210,6 +211,12 @@ Object.assign(en, {
   'Jatka ajastinta':'Resume timer', 'Tauko':'Pause', 'Sarja':'Set', 'Paino, kg':'Weight, kg',
   'Toistot':'Reps', 'Heittoyritykset':'Shot attempts', 'Valmis':'Done',
   'Palautusajastin':'Rest timer', 'Palautusaika päättyi':'Rest period finished',
+  'Palautus sarjojen välissä:':'Rest between sets:',
+  'Tee molemmat puolet ennen sarjan merkitsemistä. Kirjaa määrä per puoli.':'Work both sides before marking the set complete. Log the amount per side.',
+  'Tee määrätty aika ja merkitse sarja valmiiksi.':'Work for the set time, then mark the set complete.',
+  'Paino on vapaaehtoinen. Kirjaa omat toistot.':'Weight is optional. Log your reps.',
+  'Kirjaa yritykset. Hae levypallot itse.':'Count attempts and collect your own rebounds.',
+  'Kirjaa hallitut toistot.':'Log controlled reps.',
   'Voit jatkaa oman tuntemuksen mukaan.':'Continue when you feel ready.',
   'Palautusajan pituus':'Rest duration', 'Edellinen':'Previous', 'Seuraava harjoite':'Next exercise',
   'Muistiinpanot ja oma fiilis':'Notes and effort', 'Miltä harjoitus tuntui?':'How hard did it feel?',
@@ -246,6 +253,19 @@ Object.assign(en, {
   'Näin ansaitset':'How to earn rewards',
   'Palkinto päivän ensimmäisestä suorituksesta kussakin kategoriassa.':'A reward for the first completed activity in each category every day.',
   'Treeni':'Workout', 'Heittoarvio':'Shot review', 'Taitoharjoitus':'Skill drill',
+  'PERUSTA':'BASICS', 'RYTMI':'RHYTHM', 'JALKATYÖ':'FOOTWORK', 'Pysähdys & pivot':'Stop & pivot',
+  'Asetu tasapainoiseen asentoon ja katso eteen.':'Stand in balance and look forward.',
+  'Pomputa pallo matalalta kädestä toiseen vartalon edessä.':'Dribble low across your body from one hand to the other.',
+  'Lisää vartaloharhautus ja ensimmäinen askel.':'Add a body feint and first step.',
+  'Kuljeta rauhallisesti ja pidä pallo hallinnassa.':'Dribble calmly and control the ball.',
+  'Nosta katsetta ja muuta rytmiä lyhyellä hidastuksella.':'Look up and briefly slow down to change your rhythm.',
+  'Kiihdytä yhdellä napakalla askeleella.':'Accelerate with one sharp step.',
+  'Anna itsellesi pomppusyöttö ja ota pallo kiinni tasapainoiseen kahden jalan pysähdykseen.':'Bounce-pass to yourself and catch in a balanced two-foot stop.',
+  'Valitse tukijalka ja pidä se paikoillaan.':'Choose a pivot foot and keep it planted.',
+  'Käänny molempiin suuntiin pallo suojattuna.':'Pivot both ways while protecting the ball.',
+  '3 × 30 sekuntia, välissä 30 sekuntia lepoa.':'3 × 30 seconds with 30 seconds rest.',
+  '5 rauhallista toistoa molemmille puolille.':'5 controlled reps on both sides.',
+  '2 × 8 toistoa kummallakin tukijalalla.':'2 × 8 reps with each pivot foot.',
   'Räjähtävyys':'Explosiveness', 'Keskivartalo':'Core', 'Jalat':'Legs', 'Kädet':'Arms',
   'Korinalusheitot':'Finishing', 'Terävä ponnistus':'Explosive takeoff',
   'treeni':'workout', 'treeniä':'workouts', 'NOIN':'ABOUT', 'HARJOITETTA':'EXERCISES',
@@ -256,6 +276,54 @@ Object.assign(en, {
   'Video ja videoruudut pysyvät laitteellasi. MediaPipe käsittelee kuvan paikallisesti; palvelu voi lähettää Googlelle teknisiä käyttö- ja suorituskykymittareita. Päiväkirjaan tallennetaan vain analyysin tulokset, mittaukset ja omat muistiinpanosi.':'The video and its frames stay on your device. MediaPipe processes images locally; the service may send Google technical usage and performance metrics. Only results, measurements and your notes are saved in the journal.',
   'Voit tarkistaa AI:n havaintoa omalla kolmen pisteen 2D-mittauksella.':'You can check the AI observation with your own three-point 2D measurement.',
   'H':'C', 'R':'F', 'g × 4 + H':'g × 4 + C', 'g × 4 + R':'g × 4 + F',
+  'Kentän työkalut':'Court tools', 'KORI KERRALLAAN':'ONE SHOT AT A TIME',
+  'Riko oma ennätys. Kehity heitto kerrallaan.':'Beat your best. Improve one shot at a time.',
+  'Riko oma ennätys. Tai haasta kaveri.':'Beat your best or challenge a friend.',
+  'Yksinpeli':'Solo', 'Kaverin kanssa':'With a friend',
+  'TARKKUUS':'ACCURACY', 'NOPEUS':'SPEED', 'VIISI PAIKKAA':'FIVE SPOTS',
+  '20 vapaaheittoa':'20 free throws', '20 vapaaheittoa. Kuinka monta osuu?':'20 free throws. How many can you make?',
+  'Minuutin haaste':'One-minute challenge', 'Minuutti aikaa kerätä osumia.':'One minute to make as many as you can.',
+  'Viiden paikan heitot':'Five-spot shooting', 'Viisi heittoa jokaisesta viidestä paikasta.':'Five shots from each of five spots.',
+  'Käsin kirjattu':'Logged manually', 'Aloita haaste ja kirjaa jokainen heitto.':'Start the challenge and log every shot.',
+  'Aloita haaste':'Start challenge', 'Automaattinen korintunnistus ei ole käytössä. Tuloksia ei ole videovarmennettu.':'Automatic made-shot detection is unavailable. Results are not video verified.',
+  'Tallenna suoritus':'Save result',
+  'Aseta puhelin niin, että kori ja pelaaja näkyvät. Voit tarkistaa heitot videolta jälkikäteen.':'Place your phone so both the hoop and player are visible. You can review shots in the video afterward.',
+  'Videoa ei lähetetä palvelimelle eikä julkaista.':'The video is neither uploaded nor published.',
+  'Katso video-ohje:':'Watch tutorial:', 'YouTube, avautuu uuteen välilehteen.':'YouTube, opens in a new tab.',
+  'ke':'Wed', 'to':'Thu', 'pe':'Fri', 'la':'Sat', 'su':'Sun', 'ma':'Mon', 'ti':'Tue',
+  '/ 3 treeniä':'/ 3 workouts', 'harjoitusta':'workouts',
+  'Heiton havainnot':'Shot observations', 'Nivelten tunnistus':'Pose confidence',
+  'Heiton tunnistus':'Shot confidence', 'Analysoitu jakso':'Analyzed segment',
+  'TÄRKEIN KEHITYSKOHDE':'MAIN FOCUS', 'Harjoite':'Drill', 'Plussat':'Strengths',
+  'Kehityskohdat':'Areas to improve', 'Vartalon kallistus':'Body lean', 'Ajoitus':'Timing',
+  'AI ei löytänyt tästä jaksosta selvää yksittäistä kehityskohdetta.':'AI found no single clear area to improve in this segment.',
+  'Tunnistuksen varmuus jäi matalaksi. Älä tee tämän videon perusteella isoja tekniikkamuutoksia.':'Recognition confidence was low. Do not make major technique changes based on this video.',
+  'AI ei näe palloa tai koria, joten release arvioidaan ranteen noususta ja kyynärpään ojennuksesta.':'AI cannot see the ball or hoop, so release is estimated from wrist rise and elbow extension.',
+  'Vie saatto loppuun':'Complete the follow-through',
+  'Ojenna kyynärpää ja jätä ranne rennosti alas kohti koria.':'Extend your elbow and let your wrist relax toward the basket.',
+  'Form shooting 3 × 10 läheltä. Pysäytä saatto jokaisella toistolla sekunniksi.':'Close-range form shooting 3 × 10. Hold the follow-through for one second on every rep.',
+  'Yhdistä jalat ja kädet':'Connect your legs and arms',
+  'Aloita pallon nousu samalla hetkellä, kun polvet lähtevät ojentumaan.':'Start lifting the ball as your knees begin to extend.',
+  'One-motion shooting: 3 × 8 ilman hyppyä, sitten 3 × 5 kevyellä hypyllä.':'One-motion shooting: 3 × 8 without a jump, then 3 × 5 with a small jump.',
+  'Nosta release ylemmäs':'Raise your release point',
+  'Vie pallo heittosilmän yläpuolelle ja viimeistele ranne korkealla.':'Bring the ball above your shooting eye and finish with a high wrist.',
+  'Wall form shooting 3 × 12: seiso lähellä seinää ja tee korkea saatto ilman pallon osumista seinään.':'Wall form shooting 3 × 12: stand near a wall and finish high without hitting it.',
+  'Tee heitosta yksi liike':'Make the shot one motion',
+  'Älä pysäytä palloa set pointiin: jatka liikettä jaloista suoraan saattoon.':'Do not pause the ball at the set point: flow from your legs into the follow-through.',
+  'Rhythm shooting 3 × 8: sano ääneen “alas–ylös” ilman taukoa.':'Rhythm shooting 3 × 8: say “down–up” aloud without a pause.',
+  'Pysy tasapainossa':'Stay balanced',
+  'Pidä rintakehä lantion päällä ja katse korissa koko heiton ajan.':'Keep your chest above your hips and eyes on the basket throughout the shot.',
+  'Balance hold 3 × 6: heitä ja pysäytä laskeutuminen kahdeksi sekunniksi.':'Balance hold 3 × 6: shoot and hold your landing for two seconds.',
+  'Laskeudu suoraan':'Land in line',
+  'Suuntaa varpaat ja polvet kohti koria ja pidä ponnistuslinja suorana.':'Point toes and knees toward the basket and keep your takeoff line straight.',
+  'Line landing 3 × 8: heitä lattialinjan päältä ja laskeudu samalle linjalle.':'Line landing 3 × 8: shoot from a floor line and land on the same line.',
+  'Vahvista toistettavuutta':'Build consistency',
+  'Pidä sama rytmi, release ja tasapainoinen laskeutuminen jokaisessa toistossa.':'Keep the same rhythm, release and balanced landing on every rep.',
+  '5 spot form shooting: 5 onnistunutta heittoa jokaisesta paikasta ja kuvaa viimeinen sarja.':'Five-spot form shooting: make five from each spot and record the last set.',
+  'Ranne nousee selvästi olkapään yläpuolelle saatossa.':'Wrist rises clearly above the shoulder in the follow-through.',
+  'Release jää kuvassa matalaksi.':'Release looks low in the footage.',
+  'Lantion sivuttaissiirtymä pysyy pienenä heiton aikana.':'Sideways hip movement stays small during the shot.',
+  'Lantio siirtyy heitossa sivulle suhteessa vartalon kokoon.':'Hips move sideways relative to torso size during the shot.',
 });
 
 const presetNames: Record<string, string> = {
@@ -268,6 +336,60 @@ Object.assign(en, presetNames);
 for (const [label, profile] of Object.entries(foodProfiles)) {
   en[profile.name] ??= label.replaceAll('_', ' ').replace(/^./, first => first.toUpperCase());
 }
+
+const exerciseInstructions: Record<string, string> = {
+  'Koripallon dynaaminen lämmittely':'Move for 5 minutes: light jogging, side steps, high knees and changes of direction to the video’s rhythm. Start slowly and build speed. Glute activation and low jumps follow in the next exercises.',
+  'Pakarasilta – aktivointi':'Lie on your back with feet on the floor near your glutes. Press through your heels, lift your hips and briefly squeeze your glutes; lower with control. Avoid over-arching your lower back.',
+  'Kevyet pogo-hypyt':'Stand tall and make 10 small springy jumps from the balls of your feet. Keep only a slight knee bend and light ground contact. This is a low-intensity warm-up version, not the heavier jumps later in the video.',
+  'Goblet-kyykky':'Hold a dumbbell or kettlebell close to your chest. Squat between your legs as low as you can while keeping heels down and back controlled. Stand through your whole foot; do not let knees cave inward.',
+  'Punnerrus':'Place hands slightly wider than shoulders and keep head, hips and heels in one line. Lower your chest toward the floor with elbows angled back, then push up. If form breaks down, place hands on a bench.',
+  'Käsipainosoutu':'Support your opposite hand on a stable bench and keep your back flat. Pull the dumbbell with your elbow toward your hip, then lower slowly. Keep hips square and work both sides equally.',
+  'Dead bug':'Lie on your back with arms up and knees at 90 degrees. Slowly extend the opposite arm and leg toward the floor, return and switch sides. Control your lower back and ribs; shorten the reach if your hips move.',
+  'Kyykkyhyppy':'Stand shoulder-width apart, dip slightly and jump straight up without extra weight. Land softly on both feet and pause before the next jump. Do just three quality jumps at a time.',
+  'Vauhditon pituushyppy':'Clear a safe, grippy landing area in front of you. Swing arms back, jump forward off both feet and land on both with soft knees. Hold balance before walking back.',
+  'Sivuttaisloikka ja pito':'Push off one foot to the side and land on the other. Hold a stable landing for about one second before the next jump. Start with a short distance and keep your knee tracking over your toes.',
+  'Nilkka – polvi seinään':'Place your toes a few centimetres from a wall. Move your knee toward the wall in line with your toes while keeping the heel down; return slowly. Move the foot closer if the heel lifts.',
+  'Lonkan 90/90-kierto':'Sit with both knees bent near 90 degrees, one leg in front. Rotate knees slowly to the other side while keeping your sit bones near the floor. Use your hands for support; do not force the knees down.',
+  'Rintarangan kierto konttausasennossa':'Start on all fours and place one hand behind your head. Rotate your elbow toward the ceiling, then return slowly. Keep your hips as still as you can and switch sides after the set.',
+  'Sivulankku':'Place your elbow directly below your shoulder with feet stacked or one foot in front. Lift your hips into a straight line and keep breathing. Hold for the same time on both sides; use your knees to make it easier.',
+  'Bird dog':'Start on all fours and brace your core. Reach the opposite arm and leg long, pause and return; switch sides. Keep your hips facing the floor instead of lifting the leg high.',
+  'Bulgarialainen askelkyykky':'Place your back foot on a stable low bench and front foot far enough forward. Lower almost straight down with weight on the front leg, then stand through that leg. Practice without weights first and use support if needed.',
+  'Romanialainen maastaveto käsipainoilla':'Hold weights in front of your thighs with a slight steady knee bend. Push hips back as the weights move close to your legs; stop when your hamstrings stretch and your back stays controlled. Stand by extending the hips, without yanking with your arms.',
+  'Yhden jalan pohjenousu':'Use fingertips lightly against a wall for balance. Rise as high as you can onto the ball of one foot, then lower the heel slowly. Keep the ankle straight and repeat on the other leg.',
+  'Käsipainopystypunnerrus':'Sit on a stable bench with weights at shoulder height and feet on the floor. Press upward under control and lower to ear height. Brace your torso; avoid leaning far back.',
+  'Vasarakääntö':'Hold dumbbells at your sides with palms facing each other. Bend your elbows without swinging your upper arms and lower slowly. Keep your torso still; use lighter weights if you need momentum.',
+  'Ojentajapunnerrus käsipainoilla makuulla':'Lie on a stable bench with weights above your chest. Bend only your elbows to lower the weights beside your head, then extend again. Choose weights you can safely bring up and lower alone.',
+  'Mikan-viimeistely':'Stand directly under the basket. Alternate right and left, finishing off the backboard with the outer hand. Catch your own rebound before switching sides. Count total attempts in the set.',
+  'Saman jalan ja käden viimeistely':'Start close to the rim. On the right, jump off the right foot and finish with the right hand; mirror on the left. Collect your rebound and add speed only when the rhythm is controlled.',
+  'Eurostep-viimeistely':'Dribble toward the basket, gather the ball and take two legal steps changing direction around an imaginary defender. Jump and finish under control. Work both sides and collect your own rebound.',
+  'Drop step korin alla':'Start on the low block with your back to the basket and bounce-pass the ball to yourself. Catch it, step your basket-side foot near the rim and finish off the backboard. Keep your pivot foot planted before the first step.',
+  'Midrange viidestä paikasta':'Pick five midrange spots: two corners, two elbows and the centre. Self-pass, stop in balance and shoot five times from each. Collect your rebounds and log attempts too.',
+  'Yhden pompun pull-up':'Start on the wing with the ball. Take one sharp dribble toward the elbow, stop on two feet and rise into the shot. Work both sides and get your own rebound.',
+  'Midrange stepback':'Practice the backward step and balanced stop without a ball first. Add one dribble and step back to create space; settle before the shot so your body does not fall backward. Shoot from both sides and get your rebound.',
+  'Kolmosen voimantuotto':'Start closer to the rim with the ball in your shooting pocket and knees slightly bent. Extend your legs and lift the ball in one continuous rhythm; hold the follow-through. Move to the three-point line only when you no longer need a two-handed push.',
+  'Kolmoset vaihtelevalla jalkatyöllä':'Pick five spots behind the arc. Bounce-pass to yourself and alternate a 1–2 stop and small hop into the shot. Take five attempts per spot, collect your rebound and stay balanced.',
+  'Vapaaheitot':'Set up at the line the same way every time. Pick a target, breathe and use the same pre-shot routine. Take 20 regular free throws, get your own rebounds and count made shots separately.',
+  'Seinäsyötöt':'Mark a target at chest height on a safe empty wall. Pass firmly with both hands, step into the pass and catch the rebound in a ready stance. Mix in bounce passes and count your passes.',
+  'Soolosyöttö ja kiinniotto':'Toss or bounce the ball to yourself under control, move underneath it and catch in balance. Do the video’s three variations, one for each 45-second set. Leave plenty of room; no wall or partner is required.',
+  'Puolustusliuku':'Take a low defensive stance between two markers 3–4 metres apart. Push sideways with the back foot, keep feet apart and return the same way. Do not cross your feet; work for 20 seconds.',
+  'Closeout ja pysähdys':'Place a marker 3–5 metres away as an imaginary shooter. Accelerate toward it, slow your final steps and stop low with one hand up. Stay balanced and do not jump past; walk back to reset.',
+  'Puolustuksen soolojalkatyö':'Place two markers and start at the solo section at 2:23 in the video. Slide sideways, change direction without standing up and regain your stance after each turn. Do 30 seconds slowly first, then at game speed.',
+  'Alkulämmittely pallolla':'Start with easy dribbling and follow the video’s five-minute ball-handling sequence. Work at your own pace and look up regularly. Leave clear space and start lightly.',
+  'Lähiheitot yhdellä kädellä':'Start close to the rim with the ball in your shooting hand and the other hand only balancing it. Extend your elbow softly toward the basket, hold the follow-through and get your rebound. Take 10 shots per set; later parts of the video are optional.',
+  'Askelkyykky':'Step forward, lower with control and push back to the starting position. Keep the front foot planted and the knee tracking over toes. The video uses walking lunges; the older workout can be done in place.',
+};
+for (const [key, copy] of Object.entries(exerciseInstructions)) {
+  const guide = exerciseGuides[key];
+  if (guide) { en[guide.instruction] = copy; en[guide.label] = `Watch: ${en[key] || key}`; }
+}
+for (const [id, guide] of Object.entries(skillGuides)) en[guide.label] = `Watch: ${id === 'footwork' ? 'jump stop and pivot' : `${id} technique`}`;
+Object.assign(en, {
+  'englanniksi':'in English',
+  'Anna syöttö itsellesi ja tee pysähdys sekä pivotit ilman paria.':'Self-pass, stop and pivot without a partner.',
+  'Käytä videon valmistautumisrutiinia. FastRepin haasteessa heitetään 20 tavallista vapaaheittoa.':'Use the video’s pre-shot routine. The FastRep challenge is 20 regular free throws.',
+  'Video näyttää heittotekniikan. Haasteessa kirjaat omat heittosi 60 sekunnin ajan ja haet levypallot itse.':'The video shows shooting technique. Log your shots for 60 seconds and collect your own rebounds.',
+  'FastRepin haasteessa heität viisi kertaa jokaisesta viidestä paikasta. Anna syötöt itsellesi.':'In this challenge, take five shots from each of five spots. Self-pass.',
+});
 
 const patterns: [RegExp, (...groups: string[]) => string][] = [
   [/^(\d+) treeniä omaan tavoitteeseen\.$/, n => `${n} workouts to reach your goal.`],
@@ -285,7 +407,6 @@ const patterns: [RegExp, (...groups: string[]) => string][] = [
   [/^HARJOITE (\d+) \/ (\d+)$/, (n, count) => `EXERCISE ${n} / ${count}`],
   [/^(\d+)\/(\d+) sarjaa$/, (done, total) => `${done}/${total} sets`],
   [/^Palautus sarjojen välissä: (\d+) s$/, seconds => `Rest between sets: ${seconds} s`],
-  [/^Vielä (\d+) sarjaa jäljellä$/, n => `${n} sets remaining`],
   [/^Viikkotavoite (\d+) harjoitusta\. Lepopäivä kuuluu harjoitteluun\.$/, n => `Weekly goal: ${n} workouts. Rest days are part of training.`],
   [/^(\d+) osumaa \/ (\d+) heittoa$/, (made, attempts) => `${made} makes / ${attempts} shots`],
   [/^(\d+) haasteen yhteistulos\. Eri haasteet sisältyvät lukuun\.$/, n => `Total across ${n} challenges.`],
@@ -295,8 +416,31 @@ const patterns: [RegExp, (...groups: string[]) => string][] = [
   [/^(\d+) kolikkoa\. Avaa palkinnot\.$/, n => `${n} coins. View rewards.`],
   [/^(\d+) sarjaa jäljellä$/, n => `${n} sets remaining`],
   [/^(.+), grammaa$/, name => `${en[name] || name}, grams`],
+  [/^\/ (\d+) treeniä$/, n => `/ ${n} workouts`],
+  [/^Viikkotavoite (\d+) harjoitusta\. Lepopäivä kuuluu harjoitteluun\.$/, n => `Weekly goal: ${n} workouts. Rest days are part of training.`],
+  [/^(\d{4}-\d{2}-\d{2}): (\d+) harjoitusta$/, (day, count) => `${day}: ${count} workouts`],
+  [/^(\d+) × (\d+|\d+ s) \/ puoli$/, (sets, reps) => `${sets} × ${reps} per side`],
+  [/^(\d+) heittoa$/, n => `${n} shots`],
+  [/^Vielä (\d+) sarjaa jäljellä$/, n => `${n} sets remaining`],
   [/^En tunnistanut: (.+)\. Lisää näiden arvot käsin ennen tallennusta tai kokoa annos Annos-välilehdellä\.$/, foods => `Not recognized: ${foods}. Enter their values manually or build the meal from ingredients.`],
 ];
+
+const shotFeedback: [RegExp, (value: string) => string][] = [
+  [/Heittokäsi ojentuu selvästi: kyynärkulma kasvaa (\d+)°\./, n => `Shooting arm extends clearly: elbow angle increases by ${n}°.`],
+  [/Heittokäden ojennus jää pieneksi \((\d+)°\)\./, n => `Shooting arm extension is limited (${n}°).`],
+  [/Jalat osallistuvat voimantuottoon: polvikulma kasvaa (\d+)°\./, n => `Legs contribute to power: knee angle increases by ${n}°.`],
+  [/Jalkojen ojennus näkyy heikosti \((\d+)°\)\./, n => `Leg extension is limited (${n}°).`],
+  [/Latauksesta releaseen muodostuu yhtenäinen ([\d.]+) s liike\./, n => `The shot flows from load to release in ${n} s.`],
+  [/Jalkojen ja heittokäden ajoitus kestää ([\d.]+) s\./, n => `Leg-to-arm timing takes ${n} s.`],
+  [/Vartalon linja pysyy melko pystynä \((\d+)° kallistus\)\./, n => `Torso stays fairly upright (${n}° lean).`],
+  [/Vartalo kallistuu release-vaiheessa noin (\d+)°\./, n => `Torso leans about ${n}° at release.`],
+];
+const shotCues = ['Ojenna kyynärpää ja jätä ranne rennosti alas kohti koria.',
+  'Aloita pallon nousu samalla hetkellä, kun polvet lähtevät ojentumaan.',
+  'Vie pallo heittosilmän yläpuolelle ja viimeistele ranne korkealla.',
+  'Älä pysäytä palloa set pointiin: jatka liikettä jaloista suoraan saattoon.',
+  'Pidä rintakehä lantion päällä ja katse korissa koko heiton ajan.',
+  'Suuntaa varpaat ja polvet kohti koria ja pidä ponnistuslinja suorana.'];
 
 export function translateUi(source: string): string {
   const trimmed = source.trim();
@@ -304,7 +448,12 @@ export function translateUi(source: string): string {
   const translated = en[trimmed] ?? patterns.map(([pattern, fn]) => {
     const match = trimmed.match(pattern);
     return match ? fn(...match.slice(1)) : null;
-  }).find(Boolean);
+  }).find(Boolean) ?? (() => {
+    let output = trimmed;
+    for (const [pattern, fn] of shotFeedback) output = output.replace(pattern, (_match, value: string) => fn(value));
+    for (const cue of shotCues) output = output.replace(cue, en[cue]);
+    return output === trimmed ? null : output;
+  })();
   return translated ? source.replace(trimmed, translated) : source;
 }
 

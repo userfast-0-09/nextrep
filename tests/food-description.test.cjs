@@ -10,8 +10,9 @@ function load(path, deps = {}) {
 }
 const model = load('app/model.ts');
 const food = load('app/food-ai.ts');
+const guides = load('app/video-guides.ts');
 const description = load('app/food-description.ts', { './model': model, './food-ai': food });
-const language = load('app/ui-language.ts', { './food-ai': food });
+const language = load('app/ui-language.ts', { './food-ai': food, './video-guides': guides });
 const parsed = description.describeFood('150 g kanaa, 200 g riisiä ja 100 g kasviksia');
 assert.equal(parsed.items.length, 3);
 assert.equal(parsed.unknown.length, 0);
@@ -28,4 +29,10 @@ assert.equal(description.describeFood('5000 g kanaa').items[0].grams, null);
 assert.equal(language.translateUi('Makrolaskuri'), 'Macro calculator');
 assert.equal(language.translateUi(' 50 g riisiä '), ' 50 g riisiä '); // Unmapped text remains untouched.
 assert.equal(language.translateUi('Kana, kypsä'), 'Cooked chicken');
+assert.match(language.translateUi('Heittokäden ojennus jää pieneksi (12°). Ojenna kyynärpää ja jätä ranne rennosti alas kohti koria.'), /Shooting arm extension is limited.*Extend your elbow/);
+for (const program of model.programs) for (const [name] of program.exercises) {
+  const guide = guides.exerciseGuides[name];
+  assert.notEqual(language.translateUi(guide.instruction), guide.instruction, `Missing English cue for ${name}`);
+  assert.match(language.translateUi(guide.label), /^Watch:/);
+}
 console.log('PASS: bilingual food descriptions, ingredient weights, missing weights and unknown foods.');
